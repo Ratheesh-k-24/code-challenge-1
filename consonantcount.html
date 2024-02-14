@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consonant Count</title>
+
+    <style>
+      .countbtn {
+        background-color: rgb(52, 52, 248);
+        margin-top: 20px;
+        color: white;
+      }
+
+      body > input {
+        border: 1px solid rgb(4, 170, 4);
+      }
+    </style>
+  </head>
+  <body>
+    <label>Enter the Text</label><br />
+    <input type="text" id="textInput" /><br />
+    <button type="submit" onclick="countConsonants()" class="countbtn">
+      OK
+    </button>
+
+    <script>
+      let countConsonants = () => {
+        var textValue = document
+          .getElementById("textInput")
+          .value.toLowerCase();
+        // console.log(textValue);
+
+        let vowel = "aeiou";
+        let count = 0;
+
+        //counting the consonants by looping through input using if not vowels count the letters  using includes()
+
+        for (let txt of textValue) {
+          if (!vowel.includes(txt)) {
+            count++;
+          }
+        }
+
+        if (count == 0) {
+          alert("No consonants");
+        } else {
+          alert("Number of consonants:" + count);
+        }
+      };
+    </script>
+  </body>
+</html>
