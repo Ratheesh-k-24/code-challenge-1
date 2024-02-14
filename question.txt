@@ -1,0 +1,11 @@
+
+
+Question 1
+We have a product catalog containing several product <div> elements.
+Each product <div> has data attributes data-id and data-price, storing the product's ID and price, respectively.
+There's a button in each product <div> to add the product to the card When a button is clicked,
+ the addToCart function is called with the product ID as an argument.
+Inside the function, we select the product using the querySelector method based on its data ID.
+ then retrieve the product name and price from the selected product element using DOM manipulation and
+ data attribute access.
+Finally, display an alert message confirming the addition of the product to the cart along with its name and price.
