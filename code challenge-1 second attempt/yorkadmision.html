@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>York Admission</title>
+
+    <style>
+      body {
+        background-image: url("https://images.unsplash.com/flagged/photo-1554473675-d0904f3cbf38?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNvbGxlZ2V8ZW58MHx8MHx8fDA%3D");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+      .page-title {
+        text-align: center;
+        color: #ffffff;
+        background-color: #00ccff;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        font-family: verdana;
+        padding: 5px;
+        border-radius: 6px;
+      }
+      table {
+        margin-left: 350px;
+        margin-top: 100px;
+      }
+
+      table,
+      tr,
+      td {
+        width: 50%;
+        border: 1px solid;
+        border-spacing: 1px;
+        border-radius: 6px;
+        color: #009900;
+        background-color: #f2f2f2;
+        padding: 1px;
+      }
+
+      #submit {
+        color: #ffffff;
+        background-color: #00ccff;
+        margin-left: 150px;
+        margin-right: auto;
+        margin-top: 20px;
+        padding: 5px;
+        width: 50%;
+        font-family: Verdana;
+        font-weight: bold;
+        border-radius: 6px;
+      }
+      #result {
+        color: #00cc66;
+        background-color: #ffffff;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 5px;
+        width: 50%;
+        font-size: 20px;
+        margin-top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-title">
+      <h3>York Admission</h3>
+    </div>
+    <form onsubmit="return displayFeeDetails()">
+      <table>
+        <tr>
+          <td>Student Name:</td>
+          <td>
+            <input
+              type="text"
+              id="sname"
+              name="sname"
+              pattern="[A-Za-z ]*"
+              placeholder="Enter the student name"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Phone Number:</td>
+          <td>
+            <input
+              type="tel"
+              id="phno"
+              name="phno"
+              pattern="[789][0-9]{9}"
+              placeholder="Enter the phone number"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Admission Id:</td>
+          <td>
+            <input
+              type="text"
+              id="aid"
+              name="aid"
+              placeholder="Enter the admission id"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Date of Admission:</td>
+          <td>
+            <input
+              type="date"
+              id="admissiondate"
+              name="admissiondate"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Department Name:</td>
+          <td>
+            <select id="deptname" name="deptname" required>
+              <option value="">Select Department..</option>
+              <option value="EEE">EEE</option>
+              <option value="ECE">ECE</option>
+              <option value="CSE">CSE</option>
+              <option value="MECH">MECH</option>
+              <option value="CIVIL">CIVIL</option>
+              <option value="IT">IT</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Prefer College Hostel:</td>
+          <td>
+            <input
+              type="radio"
+              id="yes"
+              name="preferHostel"
+              value="yes"
+              required
+            />
+            Yes
+            <input
+              type="radio"
+              id="no"
+              name="preferHostel"
+              value="no"
+              required
+            />
+            No
+          </td>
+        </tr>
+        <tr>
+          <td>First Graduate:</td>
+          <td>
+            <input type="checkbox" id="firstGraduate" name="firstGraduate" />
+            Click if you are First Graduate
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" id="submit" value="CONFIRM ADMISSION" />
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+      function displayFeeDetails() {
+        var sname = document.getElementById("sname").value;
+        var deptname = document.getElementById("deptname").value;
+        var preferHostel = document.getElementsByName("preferHostel");
+        var firstGraduate = document.getElementById("firstGraduate").checked;
+        var admissionFee = 30000;
+        var tuitionFee;
+        var hostelFee = 0;
+        var totalCollegeFee;
+
+        switch (deptname) {
+          case "EEE":
+            tuitionFee = 45000;
+            break;
+          case "ECE":
+            tuitionFee = 50000;
+            break;
+          case "CSE":
+            tuitionFee = 45000;
+            break;
+          case "MECH":
+            tuitionFee = 55000;
+            break;
+          case "CIVIL":
+            tuitionFee = 50000;
+            break;
+          case "IT":
+            tuitionFee = 45000;
+            break;
+        }
+
+        if (preferHostel[0].checked) {
+          hostelFee = 75000;
+        }
+
+        totalCollegeFee = admissionFee + tuitionFee + hostelFee;
+
+        if (firstGraduate) {
+          totalCollegeFee -= 20000;
+        }
+
+        document.getElementById("result").innerHTML =
+          "Hi " +
+          sname +
+          ",<br>Your Admission Fee is Rs. " +
+          admissionFee +
+          "<br>Tuition Fee is Rs. " +
+          tuitionFee +
+          "<br>Hostel Fee is Rs. " +
+          hostelFee +
+          "<br>Total College Fee is Rs. " +
+          totalCollegeFee;
+
+        return false;
+      }
+    </script>
+  </body>
+</html>
